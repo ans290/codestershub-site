@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodestersHub | Master Python Programming</title>
+    <link rel="icon" type="image/x-icon" href="/yes.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#4F46E5',
+                            dark: '#6366F1'
+                        },
+                        secondary: {
+                            light: '#10B981',
+                            dark: '#34D399'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .dark .hero-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        
+        .light .hero-gradient {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+        }
+        
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #4F46E5;
+        }
+        
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #4F46E5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-code text-2xl text-primary-light dark:text-primary-dark mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900 dark:text-white">CodestersHub</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#courses" class="text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark px-3 py-2 text-sm font-medium">Courses</a>
+                    <a href="#features" class="text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark px-3 py-2 text-sm font-medium">Features</a>
+                    <a href="#testimonials" class="text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark px-3 py-2 text-sm font-medium">Testimonials</a>
+                    <a href="#faq" class="text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark px-3 py-2 text-sm font-medium">FAQ</a>
+                    
+                    <!-- Dark mode toggle -->
+                    <div class="flex items-center">
+                        <span class="mr-2 text-sm text-gray-600 dark:text-gray-400">
+                            <i class="fas fa-sun"></i>
+                        </span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                            <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">
+                            <i class="fas fa-moon"></i>
+                        </span>
+                    </div>
+                    
+                    <a href="#pricing" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Enroll Now
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#courses" class="block px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-50 dark:hover:bg-gray-700">Courses</a>
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-50 dark:hover:bg-gray-700">Features</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-50 dark:hover:bg-gray-700">Testimonials</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-50 dark:hover:bg-gray-700">FAQ</a>
+                <div class="px-3 py-2 flex items-center justify-between">
+                    <span class="text-gray-900 dark:text-gray-300">Theme</span>
+                    <div class="flex items-center">
+                        <span class="mr-2 text-sm text-gray-600 dark:text-gray-400">
+                            <i class="fas fa-sun"></i>
+                        </span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                            <input type="checkbox" id="mobile-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="mobile-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">
+                            <i class="fas fa-moon"></i>
+                        </span>
+                    </div>
+                </div>
+                <a href="#pricing" class="block w-full px-3 py-2 text-center text-base font-medium text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700">
+                    Enroll Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Master Python Programming with <span class="text-secondary-light dark:text-secondary-dark">CodestersHub</span></h1>
+                    <p class="text-xl mb-8 opacity-90">Transform from beginner to Python expert with our comprehensive courses designed by industry professionals.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#pricing" class="px-8 py-3 bg-secondary-light dark:bg-secondary-dark hover:bg-green-600 text-white font-medium rounded-md text-center transition duration-300">
+                            Enroll Now
+                        </a>
+                        <a href="#courses" class="px-8 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 font-medium rounded-md text-center transition duration-300">
+                            Explore Courses
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-yellow-300 dark:bg-yellow-800 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-pink-300 dark:bg-pink-900 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                        <div class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4">
+                                <pre class="text-sm md:text-base font-mono text-gray-800 dark:text-gray-200"><code><span class="text-purple-600 dark:text-purple-400">def</span> <span class="text-green-600 dark:text-green-400">welcome</span>():
+    <span class="text-blue-600 dark:text-blue-400">print</span>(<span class="text-yellow-600 dark:text-yellow-400">"Hello, Codester!"</span>)
+    <span class="text-blue-600 dark:text-blue-400">print</span>(<span class="text-yellow-600 dark:text-yellow-400">"Ready to master Python?"</span>)
+
+<span class="text-gray-500 dark:text-gray-400"># Call the function</span>
+welcome()</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!-- Courses Section -->
+<!-- Courses Section -->
+<section id="courses" class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Python Courses</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Comprehensive learning paths to take you from beginner to advanced Python developer
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8">
+      <!-- Python Core Mastery -->
+      <div class="w-full sm:w-[400px] bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out transform scale-105 border-2 border-secondary-light dark:border-secondary-dark flex flex-col">
+        <div class="bg-secondary-light dark:bg-secondary-dark p-4 text-white">
+          <h3 class="text-xl font-bold">Python Core Mastery</h3>
+          <p class="text-sm opacity-90">Intermediate Level</p>
+        </div>
+
+        <div class="p-6 flex flex-col justify-between flex-grow">
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="flex items-center text-yellow-400 mr-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star text-gray-400"></i>
+              </div>
+              <span class="text-gray-600 dark:text-gray-300 text-sm">4.5 (10 reviews)</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+              Dive deep into Python's core concepts.
+            </p>
+            <ul class="space-y-2 mb-6 text-sm">
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">Live classes</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">2 per Week for 2 Months</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">8 real-world projects</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">Certificate of completion</span>
+              </li>
+            </ul>
+          </div>
+          <div class="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div>
+              <span class="text-2xl font-bold text-gray-900 dark:text-white">PKR 3000</span>
+              <span class="text-sm text-gray-500 dark:text-gray-400 line-through ml-2">PKR 5000</span>
+            </div>
+            <a href="#pricing" class="px-4 py-2 bg-secondary-light dark:bg-secondary-dark text-white rounded-md hover:bg-green-600 transition duration-300">
+              Enroll Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Python OOP -->
+      <div class="w-full sm:w-[400px] bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out transform scale-105 border border-gray-300 dark:border-gray-700 flex flex-col relative">
+        <div class="absolute top-4 right-4 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full">COMING SOON</div>
+        <div class="bg-gray-600 p-4 text-white">
+          <h3 class="text-xl font-bold">Python OOP</h3>
+          <p class="text-sm opacity-90">Beginner Level</p>
+        </div>
+
+        <div class="p-6 flex flex-col justify-between flex-grow">
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="flex items-center text-gray-400 mr-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span class="text-gray-600 dark:text-gray-300 text-sm">New Course</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+              This Python OOP course is designed for beginners who already know Python basics and want to take their skills to the next level.
+            </p>
+            <ul class="space-y-2 mb-6 text-sm">
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">Live classes</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">2 classes per Week for 2 Months</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">10 real-world projects</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <span class="text-gray-700 dark:text-gray-300">Certificate of completion</span>
+              </li>
+            </ul>
+          </div>
+          <div class="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-gray-700">
+            <span class="text-2xl font-bold text-gray-900 dark:text-white">PKR 7000</span>
+            <button class="px-4 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed" disabled>
+              Coming Soon
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">What Our Students Say</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Don't just take our word for it - hear from our students</p>
+            </div>
+            
+            <div class="flex justify-center">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md max-w-md w-full">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="flex items-center text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <div class="flex items-center text-gray-400 mr-2">
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">"The Python Core Mastery course completely transformed my understanding of Python. The projects were challenging but so rewarding to complete!"</p>
+                    <div class="flex items-center justify-center">
+                        <img src="/bois.webp" alt="Sarah" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Sarah</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+<section id="pricing" class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Simple, Transparent Pricing</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Choose the plan that works best for your learning journey</p>
+    </div>
+
+<section id="pricing" class="py-16 bg-gray-100 dark:bg-gray-800">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center max-w-4xl mx-auto">
+      <!-- Basic Plan (Now Popular) -->
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden border-2 border-primary-light dark:border-primary-dark transform scale-105 relative">
+        <div class="bg-primary-light dark:bg-primary-dark p-6 text-white flex justify-between items-center">
+          <div>
+            <h3 class="text-xl font-bold mb-1">Basic</h3>
+            <p>Perfect for beginners</p>
+          </div>
+          <span class="bg-white text-primary-light dark:text-primary-dark text-xs font-bold px-2 py-1 rounded-full">POPULAR</span>
+        </div>
+        <div class="p-6">
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-gray-900 dark:text-white">3000</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-gray-700 dark:text-gray-300">Access to Python CORE course</span></li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-gray-700 dark:text-gray-300">Lifetime access</span></li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-gray-700 dark:text-gray-300">Community support</span></li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-gray-700 dark:text-gray-300">Certificate of completion</span></li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-gray-700 dark:text-gray-300">Project code reviews</span></li>
+          </ul>
+          <!-- Basic Button -->
+          <div class="flex justify-center">
+            <a href="https://forms.gle/ENSjkYdiLzHDxczi6" target="_blank" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white text-center font-medium rounded-md hover:bg-indigo-700 transition duration-300">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden flex flex-col justify-between">
+        <div>
+          <div class="p-6 border-b border-gray-200 dark:border-gray-600">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Pro</h3>
+            <p class="text-gray-600 dark:text-gray-300">Best value for serious learners</p>
+          </div>
+          <div class="p-6">
+            <div class="mb-6">
+              <span class="text-4xl font-bold text-gray-900 dark:text-white">5500</span>
+              <span class="text-gray-600 dark:text-gray-300">/Course</span>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-gray-700 dark:text-gray-300">Access to everything offered in basic plan</span></li>
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-gray-700 dark:text-gray-300">1-on-1 Coaching</span></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Pro Button -->
+        <div class="p-6 border-t border-gray-200 dark:border-gray-600 flex justify-center">
+          <a href="https://forms.gle/3Cdr3axUtjcKWjRx9" target="_blank" class="w-full px-6 py-3 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white text-center font-medium rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300">Get Started</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Text -->
+    <div class="text-center mt-10 mb-2">
+      <p class="text-gray-600 dark:text-gray-300">
+        Need help deciding? <a href="#" target="_blank" class="text-primary-light dark:text-primary-dark font-medium">Contact us</a> and we'll help you choose the right plan.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Features Section (Below Pricing) -->
+<section id="features" class="py-16 bg-gray-50 dark:bg-gray-900 -mt-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Why Choose CodestersHub?</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Our unique approach to teaching Python sets us apart from the competition</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out text-center">
+        <div class="text-primary-light dark:text-primary-dark text-4xl mb-4">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Project-Based Learning</h3>
+        <p class="text-gray-600 dark:text-gray-300">Learn by building real-world projects that you can add to your portfolio and showcase to employers.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out text-center">
+        <div class="text-primary-light dark:text-primary-dark text-4xl mb-4">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Community Support</h3>
+        <p class="text-gray-600 dark:text-gray-300">Join our vibrant community of Python learners and get help from instructors and peers when you're stuck.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out text-center">
+        <div class="text-primary-light dark:text-primary-dark text-4xl mb-4">
+          <i class="fas fa-infinity"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Lifetime Access</h3>
+        <p class="text-gray-600 dark:text-gray-300">Get lifetime access to all course materials, including future updates and additional content.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out text-center">
+        <div class="text-primary-light dark:text-primary-dark text-4xl mb-4">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Career Guidance</h3>
+        <p class="text-gray-600 dark:text-gray-300">Get career advice, resume tips, and interview preparation to help you land your dream Python job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ Section -->
+<section id="faq" class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300">Find answers to common questions about our courses</p>
+        </div>
+
+        <div class="space-y-4">
+
+            <!-- Q1 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
+                    <span class="font-medium text-gray-900 dark:text-white">Do I need any prior programming experience?</span>
+                    <i class="fas fa-chevron-down text-primary-light dark:text-primary-dark transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden p-4 text-gray-600 dark:text-gray-300">
+                    <p>No, this course is beginner-friendly. We'll start from scratch and help you build a strong foundation in Python programming.</p>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
+                    <span class="font-medium text-gray-900 dark:text-white">Will I get a certificate after the course?</span>
+                    <i class="fas fa-chevron-down text-primary-light dark:text-primary-dark transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden p-4 text-gray-600 dark:text-gray-300">
+                    <p>Yes! You will receive a certificate of completion if you attend the classes and complete the course tasks successfully.</p>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
+                    <span class="font-medium text-gray-900 dark:text-white">What if I miss a class?</span>
+                    <i class="fas fa-chevron-down text-primary-light dark:text-primary-dark transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden p-4 text-gray-600 dark:text-gray-300">
+                    <p>Don't worry! Every class is recorded and shared with students. You can catch up anytime with the video lectures.</p>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
+                    <span class="font-medium text-gray-900 dark:text-white">How can I pay for the course?</span>
+                    <i class="fas fa-chevron-down text-primary-light dark:text-primary-dark transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden p-4 text-gray-600 dark:text-gray-300">
+                    <p>We accept payments via Easypaisa, JazzCash, and bank transfers. Once you register, you’ll receive complete payment details.</p>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
+                    <span class="font-medium text-gray-900 dark:text-white">What if I get stuck or have questions?</span>
+                    <i class="fas fa-chevron-down text-primary-light dark:text-primary-dark transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden p-4 text-gray-600 dark:text-gray-300">
+                    <p>You can ask your questions during live classes or in our student support group. We’re here to help every step of the way!</p>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
+                    <span class="font-medium text-gray-900 dark:text-white">How long do I have access to the content?</span>
+                    <i class="fas fa-chevron-down text-primary-light dark:text-primary-dark transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden p-4 text-gray-600 dark:text-gray-300">
+                    <p>You’ll have unlimited access to all class recordings and materials for life.</p>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
+                    <span class="font-medium text-gray-900 dark:text-white">Can I get a refund?</span>
+                    <i class="fas fa-chevron-down text-primary-light dark:text-primary-dark transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden p-4 text-gray-600 dark:text-gray-300">
+                    <p>Yes, you can request a refund within 24 hours of your first class if you are unsatisfied for any reason.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary-light dark:bg-primary-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to start your Python journey?</h2>
+            <p class="text-xl opacity-90 mb-8 max-w-3xl mx-auto">Join students who have transformed their careers with CodestersHub</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#pricing" class="px-8 py-3 bg-white text-primary-light dark:text-primary-dark hover:bg-gray-100 font-medium rounded-md text-center transition duration-300">
+                    Choose Your Plan
+                </a>
+                <a href="https://www.instagram.com/codestershub/" target="_blank" class="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-primary-light dark:hover:text-primary-dark font-medium rounded-md text-center transition duration-300">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 py-12">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex justify-center items-center mb-4">
+      <i class="fas fa-code text-2xl text-primary-light dark:text-primary-dark mr-2"></i>
+      <span class="text-xl font-bold text-white">CodestersHub</span>
+    </div>
+    <p class="mb-0">The best place to learn Python programming and advance your career in tech.</p>
+    <p class="text-sm text-gray-500 mt-6">&copy; 2025 CodestersHub. All rights reserved.</p>
+  </div>
+</footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // FAQ accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+                
+                // Rotate icon
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+                
+                // Close other open answers
+                faqQuestions.forEach(q => {
+                    if (q !== question) {
+                        q.nextElementSibling.classList.add('hidden');
+                        q.querySelector('i').classList.remove('transform', 'rotate-180');
+                    }
+                });
+            });
+        });
+        
+        // Dark mode toggle
+        const toggle = document.getElementById('toggle');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference or use system preference
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            toggle.checked = true;
+            mobileToggle.checked = true;
+        }
+        
+        // Toggle dark mode
+        function toggleDarkMode(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                html.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+            }
+        }
+        
+        toggle.addEventListener('change', (e) => {
+            toggleDarkMode(e.target.checked);
+            mobileToggle.checked = e.target.checked;
+        });
+        
+        mobileToggle.addEventListener('change', (e) => {
+            toggleDarkMode(e.target.checked);
+            toggle.checked = e.target.checked;
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
